@@ -1,9 +1,17 @@
-
 import 'package:flutter/material.dart';
-import 'gbs.dart';
+import 'package:permission_handler/permission_handler.dart';
+import 'esp_32/presentation/screens/wifi_sender_page.dart';
 
-void main() {
-  runApp( MaterialApp(home: GpsReaderPage()));
+Future<void> main() async {
+  WidgetsFlutterBinding.ensureInitialized();
+  await Permission.location.request();
+  await Permission.nearbyWifiDevices.request();
+  await Permission.bluetooth.request();
+  await Permission.bluetoothConnect.request();
+  await Permission.bluetoothScan.request();
+  runApp( MaterialApp(
+    debugShowCheckedModeBanner: false,
+      home: WifiSenderPage()));
 }
 // import 'package:flutter/material.dart';
 // import 'package:provider/provider.dart';
